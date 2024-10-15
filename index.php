@@ -12,7 +12,7 @@
     $titulo = $saldacao . " Portifolio do " . $nome;
     $subtitulo = "seja bem vindo no meu portifolio";
 
-    $ano = "2024";    
+    $ano = "2020";    
 
     $projeto = "Meu portifolio";
     $finalizado = true;
@@ -23,9 +23,19 @@
     <h1><?=$titulo?></h1>
     <p><?=$subtitulo?></p>
     <h1><?=$ano?></h1>
+
+
     
 </hr>
+    
+
+    
+
     <div>
+        
+    
+
+
         <h2></=$projeto?></h2>
         <p><?=$descricao?></p>
         <div><?=$dataDoProjeto?></div>
