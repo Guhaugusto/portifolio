@@ -1,61 +1,86 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portifolio</title>
+    <title>Meu Portfólio</title>
 </head>
 <body>
     <?php 
     $nome = "Gustavo";
-    $saldacao = "olá";
-    $titulo = $saldacao . " Portifolio do " . $nome;
-    $subtitulo = "seja bem vindo no meu portifolio";
+    $saldacao = "Olá";
+    $titulo = $saldacao . " Portfólio do " . $nome;
+    $subtitulo = "Seja bem-vindo ao meu portfólio";
+    $ano = "2024";    
 
-    $ano = "2020";    
+    $projetos = [
+        [
+            "titulo" => "Meu portfólio", 
+            "finalizado" => false,
+            "data"=> "2024-10-16",
+            "descricao" => "Meu primeiro portfólio. Escrito em PHP e HTML",
+        ],
+        [
+            "titulo" => "Lista de Tarefas", 
+            "finalizado" => true,
+            "data"=> "2024-10-17",
+            "descricao" => "Lista de tarefas. Escrito em PHP e HTML",
+        ],
+        [
+            "titulo" => "Controle de Leitura de Livros", 
+            "finalizado" => true,
+            "data"=> "2024-10-17",
+            "descricao" => "Lista de Livros. Escrito em PHP e HTML",
+        ],
+        [
+            "titulo" => "Mais um Projeto", 
+            "finalizado" => false,
+            "data"=> "2025-05-11",
+            "descricao" => "Mais um Projeto. Escrito em PHP e HTML",
+        ],
+    ];
 
-    $projeto = "Meu portifolio";
-    $finalizado = true;
-    $dataDoProjeto = "2024-10-15";
-    $descricao = "Meu primeiro portifolio"
+    function filtraProjetos($listaDeProjetos, $finalizado = true) {
+        $filtrados = [];
+
+        foreach ($listaDeProjetos as $projeto) {
+
+            if ( ! is_null($finalizado) && $projeto['finalizado'] === $finalizado){
+
+                $filtrados []= $projeto;
+            }
+        }
+       return $filtrados;
+    }
+
+    function verificarseEstaFinalizado($p) {
+        if ($p['finalizado']) {
+            echo '<span style="color: green">✅ Finalizado</span>';
+        } else {
+            echo '<span style="color: red">⛔ Não Finalizado</span>';
+        }
+
+    };
+       
     ?>
+
 
     <h1><?=$titulo?></h1>
     <p><?=$subtitulo?></p>
-    <h1><?=$ano?></h1>
+    <h2>Ano: <?=$ano?></h2>
 
-
-    
-</hr>
-    
-
-    
-
-    <div>
-        
-    
-
-
-        <h2></=$projeto?></h2>
-        <p><?=$descricao?></p>
-        <div><?=$dataDoProjeto?></div>
-
-        <div> Projeto
-            <?php if($finalizado): ?>
-                <span style="color: green">✅Finalizado</span>
-
-            <?php else: ?>
-                <span style="color: red">⛔Não Finalizado</span>
-
-                <?php endif; ?>
-
-
-
-        </div>
-
-    </div>
-    
-    
+    <h3>Projetos</h3>
+    <ul>
+        <?php foreach (filtraProjetos($projetos) as $projeto): ?>
+            <li>
+                <h4><?=$projeto['titulo']?></h4>
+                <p><?=$projeto['descricao']?></p>
+                <div>Data: <?=$projeto['data']?></div>
+                <div>Projeto: <?php verificarseEstaFinalizado($projeto); ?></div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 
 </body>
 </html>
