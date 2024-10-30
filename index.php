@@ -1,86 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title>Portfólio</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
 </head>
-<body>
-    <?php 
-    $nome = "Gustavo";
-    $saldacao = "Olá";
-    $titulo = $saldacao . " Portfólio do " . $nome;
-    $subtitulo = "Seja bem-vindo ao meu portfólio";
-    $ano = "2024";    
+<body class="bg-slate-900 text-white">
+    
+<?php include('./componentes/header.php') ?>
 
-    $projetos = [
-        [
-            "titulo" => "Meu portfólio", 
-            "finalizado" => false,
-            "data"=> "2024-10-16",
-            "descricao" => "Meu primeiro portfólio. Escrito em PHP e HTML",
-        ],
-        [
-            "titulo" => "Lista de Tarefas", 
-            "finalizado" => true,
-            "data"=> "2024-10-17",
-            "descricao" => "Lista de tarefas. Escrito em PHP e HTML",
-        ],
-        [
-            "titulo" => "Controle de Leitura de Livros", 
-            "finalizado" => true,
-            "data"=> "2024-10-17",
-            "descricao" => "Lista de Livros. Escrito em PHP e HTML",
-        ],
-        [
-            "titulo" => "Mais um Projeto", 
-            "finalizado" => false,
-            "data"=> "2025-05-11",
-            "descricao" => "Mais um Projeto. Escrito em PHP e HTML",
-        ],
-    ];
+    <main class="mx-auto max-w-screen-lg  min-h-20 px-3 gap-y-6">
 
-    function filtraProjetos($listaDeProjetos, $finalizado = true) {
-        $filtrados = [];
+    <?php include('./componentes/hero.php') ?>
+    
+    <section class="space-y-3 py-6" id="projetos">
 
-        foreach ($listaDeProjetos as $projeto) {
+        <h2 class="text-2xl font-bold">Meus projetos</h2>
 
-            if ( ! is_null($finalizado) && $projeto['finalizado'] === $finalizado){
+        <?php include('./componentes/projetos.php') ?>
 
-                $filtrados []= $projeto;
-            }
-        }
-       return $filtrados;
-    }
+    </section>
 
-    function verificarseEstaFinalizado($p) {
-        if ($p['finalizado']) {
-            echo '<span style="color: green">✅ Finalizado</span>';
-        } else {
-            echo '<span style="color: red">⛔ Não Finalizado</span>';
-        }
+    <footer class="mx-auto maw-w-screen-lg min-h-20"> 
 
-    };
-       
-    ?>
+    <div class="border-t border-gray-600 pt-6 px-3 text-gray-400 text-sm">
+    
+    © Copyright <?=date('Y')?>. Criado por mim </div>
 
-
-    <h1><?=$titulo?></h1>
-    <p><?=$subtitulo?></p>
-    <h2>Ano: <?=$ano?></h2>
-
-    <h3>Projetos</h3>
-    <ul>
-        <?php foreach (filtraProjetos($projetos) as $projeto): ?>
-            <li>
-                <h4><?=$projeto['titulo']?></h4>
-                <p><?=$projeto['descricao']?></p>
-                <div>Data: <?=$projeto['data']?></div>
-                <div>Projeto: <?php verificarseEstaFinalizado($projeto); ?></div>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-
+    </footer>
 </body>
 </html>
